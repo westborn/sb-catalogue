@@ -1,13 +1,27 @@
 <script>
 	import entries from '$lib/SB-Entries-2022.json';
+	import { LightPaginationNav } from 'svelte-paginate';
+
+	let fallback = 'http://placekitten.com/200/200';
+	const handleError = (ev) => (ev.target.src = fallback);
+
+	let currentPage = 1;
+	let pageSize = 6;
 
 	let searchTerm = '';
 	$: filteredEntries = searchTerm
 		? entries.filter((x) => {
 				const searchText = x.EntryNumber + x.ArtistName + x.Title;
+				currentPage = 1;
+				pageSize = 6;
 				return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase());
 		  })
 		: entries;
+
+	$: paginatedItems = filteredEntries.slice(
+		(currentPage - 1) * pageSize,
+		(currentPage - 1) * pageSize + pageSize
+	);
 </script>
 
 <div class="m-3 w-96">
@@ -22,11 +36,20 @@
 	</div>
 </div>
 
+<LightPaginationNav
+	totalItems={filteredEntries.length}
+	{pageSize}
+	{currentPage}
+	limit={1}
+	showStepOptions={true}
+	on:setPage={(e) => (currentPage = e.detail.page)}
+/>
+
 <div class="p-8 text-gray-700">
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
 	>
-		{#each filteredEntries as { EntryNumber, ArtistName, Title, Material, Size, Price, Description, ImageFileName, InOrOut, SitedAt, Surname, OtherNames, entryURL }}
+		{#each paginatedItems as { EntryNumber, ArtistName, Title, Material, Size, Price, Description, ImageFileName, InOrOut, SitedAt, Surname, OtherNames, entryURL }}
 			<!-- card -->
 			<div class="flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50 ">
 				<div class="flex items-center w-full p-3">
@@ -37,7 +60,13 @@
 					</div>
 					<span class="ml-2 pt-1 text-sm font-bold">{Title} - {ArtistName}</span>
 				</div>
-				<img class="max-h-96 p-2 rounded-2xl" src={entryURL} alt={ImageFileName} />
+				<img
+					class="max-h-96 p-2 rounded-2xl"
+					src={entryURL}
+					on:error={handleError}
+					alt={ImageFileName}
+				/>
+				<!-- <ImageLoad url={entryURL} altText={ImageFileName} /> -->
 				<div class="px-3 pb-2 w-full">
 					<p class="text-base">{Description}</p>
 					<p class="text-xs">{Size}</p>

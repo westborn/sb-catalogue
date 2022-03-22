@@ -1,9 +1,8 @@
 <script>
-	import entries from '$lib/SB-Entries-2022.json';
 	import { LightPaginationNav } from 'svelte-paginate';
 
-	let fallback = 'http://placekitten.com/200/200';
-	const handleError = (ev) => (ev.target.src = fallback);
+	import entries from '$lib/SB-Entries-2022.json';
+	import EntryCard from '../components/entryCard.svelte';
 
 	let currentPage = 1;
 	let pageSize = 6;
@@ -49,31 +48,8 @@
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
 	>
-		{#each paginatedItems as { EntryNumber, ArtistName, Title, Material, Size, Price, Description, ImageFileName, InOrOut, SitedAt, Surname, OtherNames, entryURL }}
-			<!-- card -->
-			<div class="flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50 ">
-				<div class="flex items-center w-full p-3">
-					<div
-						class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 font-bold text-white"
-					>
-						<p>{EntryNumber}</p>
-					</div>
-					<span class="ml-2 pt-1 text-sm font-bold">{Title} - {ArtistName}</span>
-				</div>
-				<img
-					class="max-h-96 p-2 rounded-2xl"
-					src={entryURL}
-					on:error={handleError}
-					alt={ImageFileName}
-				/>
-				<!-- <ImageLoad url={entryURL} altText={ImageFileName} /> -->
-				<div class="px-3 pb-2 w-full">
-					<p class="text-base">{Description}</p>
-					<p class="text-xs">{Size}</p>
-					<p class="text-base font-medium text-gray-700">{Price}</p>
-				</div>
-			</div>
-			<!-- card -->
+		{#each paginatedItems as entry (entry.EntryNumber)}
+			<EntryCard {...entry} />
 		{/each}
 	</div>
 </div>

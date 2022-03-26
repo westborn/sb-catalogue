@@ -2,7 +2,7 @@
 	const menuText = [
 		{
 			text: 'Home',
-			href: '/'
+			href: '/home'
 		},
 		{
 			text: 'About',
@@ -39,7 +39,7 @@
 <nav class="bg-primary p-0 mt-0 w-full">
 	<div class="h-16 flex justify-between ">
 		<div class="flex">
-			<a href="https://sculpturebermagui.org.au/">
+			<a href="https://sculpturebermagui.org.au/home">
 				<img
 					class="rounded-2xl"
 					alt="Sculpture Bermagui"

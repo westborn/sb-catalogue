@@ -23,8 +23,9 @@
 	);
 </script>
 
-<div class="m-3 w-96">
-	<div class="w-full rounded">
+<div class="mt-12">
+	<p class="ml-48 text-gray-700 font-bold text-2xl">Catalogue Entries for 2022</p>
+	<div class="ml-48 mt-3 w-96 rounded">
 		<input
 			bind:value={searchTerm}
 			type="search"

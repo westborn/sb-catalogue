@@ -8,6 +8,8 @@
 	let pageSize = 6;
 
 	let searchTerm = '';
+
+	// Setup the filter for searching / join a few fields to search on
 	$: filteredEntries = searchTerm
 		? entries.filter((x) => {
 				const searchText = x.EntryNumber + x.ArtistName + x.Title;
@@ -17,25 +19,28 @@
 		  })
 		: entries;
 
+	// Setup just the page of entries (based on pageSize)
 	$: paginatedItems = filteredEntries.slice(
 		(currentPage - 1) * pageSize,
 		(currentPage - 1) * pageSize + pageSize
 	);
 </script>
 
+<!-- Search Box -->
 <div class="mt-12">
-	<p class="ml-48 text-gray-700 font-bold text-2xl">Catalogue Entries for 2022</p>
+	<p class="ml-48 text-gray-700 font-bold text-2xl">Catalogue - 2022</p>
 	<div class="ml-48 mt-3 w-96 rounded">
 		<input
 			bind:value={searchTerm}
 			type="search"
 			class="w-full rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-			placeholder="Search Entries"
+			placeholder="Search Entries (number, title or artist)"
 			aria-label="Search"
 		/>
 	</div>
 </div>
 
+<!-- Pagination page numbers and left/right -->
 <LightPaginationNav
 	totalItems={filteredEntries.length}
 	{pageSize}
@@ -45,6 +50,7 @@
 	on:setPage={(e) => (currentPage = e.detail.page)}
 />
 
+<!-- The items from the JSON Array (Filtered and Paginated) -->
 <div class="p-8 text-gray-700">
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"

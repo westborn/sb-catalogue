@@ -27,9 +27,9 @@
 </script>
 
 <!-- Search Box -->
-<div class="mt-12">
-	<p class="ml-48 text-gray-700 font-bold text-2xl">Catalogue - 2022</p>
-	<div class="ml-48 mt-3 w-96 rounded">
+<div class="mt-8">
+	<p class="ml-28 -mt-8 text-2xl font-bold text-gray-700">Catalogue - 2022</p>
+	<div class="ml-28 mt-3 w-80 rounded">
 		<input
 			bind:value={searchTerm}
 			type="search"
@@ -45,7 +45,7 @@
 	totalItems={filteredEntries.length}
 	{pageSize}
 	{currentPage}
-	limit={1}
+	limit={2}
 	showStepOptions={true}
 	on:setPage={(e) => (currentPage = e.detail.page)}
 />
@@ -56,7 +56,16 @@
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
 	>
 		{#each paginatedItems as entry (entry.EntryNumber)}
-			<EntryCard {...entry} />
+			<EntryCard
+				EntryNumber={entry.EntryNumber}
+				Title={entry.Title}
+				ArtistName={entry.ArtistName}
+				entryURL={entry.entryURL}
+				ImageFileName={entry.ImageFileName}
+				Description={entry.Description}
+				Size={entry.Size}
+				Price={entry.Price}
+			/>
 		{/each}
 	</div>
 </div>

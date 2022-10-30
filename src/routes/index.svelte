@@ -65,6 +65,7 @@
 				Description={entry.Description}
 				Size={entry.Size}
 				Price={entry.Price}
+				Sold={entry.Sold}
 			/>
 		{/each}
 	</div>

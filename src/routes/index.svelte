@@ -1,23 +1,25 @@
 <script>
 	import { LightPaginationNav } from 'svelte-paginate';
 
-	import entries from '$lib/SB-Entries-2022.json';
+	import entries from '$lib/SB-Entries-2023.json';
 	import EntryCard from '../components/entryCard.svelte';
 
 	let currentPage = 1;
-	let pageSize = 6;
+	let pageSize = 3;
+	let year = '2022';
 
 	let searchTerm = '';
 
 	// Setup the filter for searching / join a few fields to search on
-	$: filteredEntries = searchTerm
-		? entries.filter((x) => {
-				const searchText = x.EntryNumber + x.ArtistName + x.Title;
-				currentPage = 1;
-				pageSize = 6;
-				return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase());
-		  })
-		: entries;
+	// must be this year
+	// if no search term entered - return them all
+	$: filteredEntries = entries.filter((x) => {
+		if (x.exhibitionYear !== year) return false;
+		if (searchTerm === '') return true;
+		const searchText = x.entryNumber + x.artistName + x.title;
+		currentPage = 1;
+		return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase());
+	});
 
 	// Setup just the page of entries (based on pageSize)
 	$: paginatedItems = filteredEntries.slice(
@@ -28,7 +30,7 @@
 
 <!-- Search Box -->
 <div class="mt-8">
-	<p class="ml-28 -mt-8 text-2xl font-bold text-gray-700">Catalogue - 2022</p>
+	<p class="ml-28 -mt-8 text-2xl font-bold text-gray-700">Catalogue - {year}</p>
 	<div class="ml-28 mt-3 w-80 rounded">
 		<input
 			bind:value={searchTerm}
@@ -55,17 +57,16 @@
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
 	>
-		{#each paginatedItems as entry (entry.EntryNumber)}
+		{#each paginatedItems as entry (entry.entryNumber)}
 			<EntryCard
-				EntryNumber={entry.EntryNumber}
-				Title={entry.Title}
-				ArtistName={entry.ArtistName}
-				entryURL={entry.entryURL}
-				ImageFileName={entry.ImageFileName}
-				Description={entry.Description}
-				Size={entry.Size}
-				Price={entry.Price}
-				Sold={entry.Sold}
+				entryNumber={entry.entryNumber}
+				title={entry.title}
+				artistName={entry.artistName}
+				entryImageId={entry.entryImageId}
+				imageFileName={entry.imageFileName}
+				description={entry.description}
+				size={entry.size}
+				price={entry.price}
 			/>
 		{/each}
 	</div>

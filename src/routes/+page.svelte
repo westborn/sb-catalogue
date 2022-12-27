@@ -1,13 +1,15 @@
 <script>
+	import { page } from '$app/stores';
+
 	import { LightPaginationNav } from 'svelte-paginate';
 
-	import entries from '$lib/SB-Entries-2023.json';
-	import EntryCard from '../components/entryCard.svelte';
+	import entries from '$lib/SB-Entries.json';
+	import EntryCard from '$lib/entryCard.svelte';
 
 	let currentPage = 1;
 	let pageSize = 3;
-	let year = '2022';
-
+	let paramYear = $page.url.searchParams.get('year');
+	$: year = paramYear ? paramYear : new Date().getFullYear().toString();
 	let searchTerm = '';
 
 	// Setup the filter for searching / join a few fields to search on

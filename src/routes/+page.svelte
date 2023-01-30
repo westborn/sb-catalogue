@@ -49,7 +49,7 @@
 	totalItems={filteredEntries.length}
 	{pageSize}
 	{currentPage}
-	limit={2}
+	limit={1}
 	showStepOptions={true}
 	on:setPage={(e) => (currentPage = e.detail.page)}
 />

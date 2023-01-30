@@ -32,8 +32,8 @@
 
 <!-- Search Box -->
 <div class="mt-8">
-	<p class="ml-28 -mt-8 text-2xl font-bold text-gray-700">Catalogue - {year}</p>
-	<div class="ml-28 mt-3 w-80 rounded">
+	<p class="p-4 text-2xl font-bold text-gray-700">Catalogue - {year}</p>
+	<div class="w-80 rounded p-4">
 		<input
 			bind:value={searchTerm}
 			type="search"
@@ -69,6 +69,8 @@
 				description={entry.description}
 				size={entry.size}
 				price={entry.price}
+				inOrOut={entry.inOrOut}
+				material={entry.material}
 			/>
 		{/each}
 	</div>

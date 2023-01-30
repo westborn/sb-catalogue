@@ -7,6 +7,8 @@
 	export let description;
 	export let size;
 	export let price;
+	export let inOrOut;
+	export let material;
 
 	let fallback = 'images/error-image.png';
 	const handleError = (ev) => (ev.target.src = fallback);
@@ -32,8 +34,12 @@
 	/>
 	<div class="w-full px-3 pb-2">
 		<p class="text-base">{description}</p>
-		<p class="text-xs">{size}</p>
-		<p class="text-base font-medium text-gray-700">{price}</p>
+		<p class="text-xs">{material}</p>
+		<div class="flex flex-row justify-between">
+			<p class="text-xs">{size}</p>
+			<p class="text-xs">{inOrOut}</p>
+		</div>
+		<p class="w-full text-center text-base font-medium text-gray-700">{price}</p>
 	</div>
 </div>
 <!-- card -->

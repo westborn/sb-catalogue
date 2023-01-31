@@ -38,7 +38,7 @@
 			bind:value={searchTerm}
 			type="search"
 			class="w-full rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-			placeholder="Search Entries (number, title or artist)"
+			placeholder="Search number, title or artist"
 			aria-label="Search"
 		/>
 	</div>

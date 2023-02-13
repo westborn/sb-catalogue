@@ -35,7 +35,7 @@
 </script>
 
 <!-- Search Box -->
-<div class="mt-8">
+<div>
 	<p class="p-4 text-2xl font-bold text-gray-700">Catalogue - {year}</p>
 	<div class="w-80 rounded p-4">
 		<input

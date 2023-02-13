@@ -3,13 +3,17 @@
 
 	import { LightPaginationNav } from 'svelte-paginate';
 
-	import entries from '$lib/SB-Entries.json';
+	import entries2022 from '$lib/SB-Entries-2022.json';
+	import entries2023 from '$lib/SB-Entries-2023.json';
+
 	import EntryCard from '$lib/entryCard.svelte';
 
+	let entries = [...entries2022, ...entries2023];
 	let currentPage = 1;
 	let pageSize = 3;
 	let paramYear = $page.url.searchParams.get('year');
-	$: year = paramYear ? paramYear : new Date().getFullYear().toString();
+	let year = paramYear ? paramYear : new Date().getFullYear().toString();
+	let websiteURL = `https://sculpturebermagui.org.au/wp-content/uploads/${year}CatalogueImages`;
 	let searchTerm = '';
 
 	// Setup the filter for searching / join a few fields to search on
@@ -61,11 +65,13 @@
 	>
 		{#each paginatedItems as entry (entry.entryNumber)}
 			<EntryCard
+				{websiteURL}
 				entryNumber={entry.entryNumber}
 				title={entry.title}
 				artistName={entry.artistName}
-				entryImageId={entry.entryImageId}
 				imageFileName={entry.imageFileName}
+				imageId={entry.imageId}
+				imageExtension={entry.imageExtension}
 				description={entry.description}
 				size={entry.size}
 				price={entry.price}

@@ -1,9 +1,11 @@
 <script>
+	export let websiteURL;
 	export let entryNumber;
 	export let title;
 	export let artistName;
-	export let entryImageId;
 	export let imageFileName;
+	export let imageId;
+	export let imageExtension;
 	export let description;
 	export let size;
 	export let price;
@@ -28,7 +30,7 @@
 	</div>
 	<img
 		class="max-h-96 rounded-2xl p-2"
-		src={`https://drive.google.com/uc?export=view&id=${entryImageId}`}
+		src={`${websiteURL}/${imageId}.${imageExtension}`}
 		on:error={handleError}
 		alt={imageFileName}
 	/>

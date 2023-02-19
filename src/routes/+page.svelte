@@ -22,7 +22,7 @@
 	$: filteredEntries = entries.filter((x) => {
 		if (x.exhibitionYear !== year) return false;
 		if (searchTerm === '') return true;
-		const searchText = x.entryNumber + x.artistName + x.title;
+		const searchText = x.exhibitNumber + x.artistName + x.title;
 		currentPage = 1;
 		return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase());
 	});
@@ -63,10 +63,10 @@
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
 	>
-		{#each paginatedItems as entry (entry.entryNumber)}
+		{#each paginatedItems as entry (entry.exhibitNumber)}
 			<EntryCard
 				{websiteURL}
-				entryNumber={entry.entryNumber}
+				exhibitNumber={entry.exhibitNumber}
 				title={entry.title}
 				artistName={entry.artistName}
 				imageFileName={entry.imageFileName}

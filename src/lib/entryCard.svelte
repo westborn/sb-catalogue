@@ -1,6 +1,6 @@
 <script>
 	export let websiteURL;
-	export let entryNumber;
+	export let exhibitNumber;
 	export let title;
 	export let artistName;
 	export let imageFileName;
@@ -20,7 +20,7 @@
 <div class="relative flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
 	<div class="flex w-full items-center py-3 px-2">
 		<div class="flex items-center justify-center rounded-full bg-blue-500 p-4 font-bold text-white">
-			<p>{entryNumber}</p>
+			<p>{exhibitNumber}</p>
 		</div>
 		<span class="ml-2 pt-1 text-sm font-bold">{title} - {artistName}</span>
 	</div>

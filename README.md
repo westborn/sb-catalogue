@@ -9,7 +9,7 @@ Format for the JSON file is:
 - artistName
 - description
 - entryImageId
-- entryNumber
+- exhibitNumber
 - exhibitionYear
 - imageFileName
 - inOrOut

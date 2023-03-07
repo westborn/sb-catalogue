@@ -10,7 +10,7 @@
 
 	let entries = [...entries2022, ...entries2023];
 	let currentPage = 1;
-	let pageSize = 3;
+	let pageSize = 5;
 	let paramYear = $page.url.searchParams.get('year');
 	let year = paramYear ? paramYear : new Date().getFullYear().toString();
 	let websiteURL = `https://sculpturebermagui.org.au/wp-content/uploads/${year}CatalogueImages`;
@@ -61,7 +61,7 @@
 <!-- The items from the JSON Array (Filtered and Paginated) -->
 <div class="p-8 text-gray-700">
 	<div
-		class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+		class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
 	>
 		{#each paginatedItems as entry (entry.exhibitNumber)}
 			<EntryCard

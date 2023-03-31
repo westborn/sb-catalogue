@@ -1,19 +1,13 @@
 <script>
-	export let websiteURL;
-	export let exhibitNumber;
-	export let title;
-	export let artistName;
-	export let imageFileName;
-	export let imageId;
-	export let imageExtension;
-	export let description;
-	export let size;
-	export let price;
-	export let inOrOut;
-	export let material;
+	import fallback from '$lib/Assets/error-image.png';
+	export let entry;
+	$: ({ artistName, description, exhibitNumber, imageURL, inOrOut, material, price, size, title } =
+		entry);
 
-	let fallback = 'images/error-image.png';
-	const handleError = (ev) => (ev.target.src = fallback);
+	const handleError = (e) => {
+		e.target.src = fallback;
+		console.log('Not Found');
+	};
 </script>
 
 <!-- card -->
@@ -24,12 +18,7 @@
 		</div>
 		<span class="ml-2 pt-1 text-sm font-bold">{title} - {artistName}</span>
 	</div>
-	<img
-		class="max-h-96 rounded-2xl px-2"
-		src={`${websiteURL}/${imageId}.${imageExtension}`}
-		on:error={handleError}
-		alt={imageFileName}
-	/>
+	<img class="max-h-96 rounded-2xl px-2" src={imageURL} on:error={handleError} alt={title} />
 	<div class="w-full px-3 pb-2">
 		<p class="text-base">{description}</p>
 		<p class="mt-1 text-center text-xs">{material}</p>

@@ -1,36 +1,36 @@
-<script>
-	import { page } from '$app/stores';
+<script lang="ts">
+	import { page } from '$app/stores'
 
-	import { LightPaginationNav } from 'svelte-paginate';
+	import { LightPaginationNav } from 'svelte-paginate'
 
-	import entries2022 from '$lib/SB-Exhibits-2022.json';
-	import entries2023 from '$lib/SB-Exhibits-2023.json';
+	import entries2022 from '@lib/Assets/SB-Exhibits-2022.json'
+	import entries2023 from '@lib/Assets/SB-Exhibits-2023.json'
 
-	import EntryCard from '$lib/EntryCard.svelte';
+	import EntryCard from '@lib/Components/EntryCard.svelte'
 
-	let entries = [...entries2022, ...entries2023];
-	let currentPage = 1;
-	let pageSize = 5;
-	let paramYear = $page.url.searchParams.get('year');
-	let year = paramYear ? paramYear : new Date().getFullYear().toString();
-	let searchTerm = '';
+	let entries = [...entries2022, ...entries2023]
+	let currentPage = 1
+	let pageSize = 5
+	let paramYear = $page.url.searchParams.get('year')
+	let year = paramYear ? paramYear : new Date().getFullYear().toString()
+	let searchTerm = ''
 
 	// Setup the filter for searching / join a few fields to search on
 	// must be this year
 	// if no search term entered - return them all
 	$: filteredEntries = entries.filter((x) => {
-		if (x.exhibitionYear !== year) return false;
-		if (searchTerm === '') return true;
-		const searchText = x.exhibitNumber + x.artistName + x.title;
-		currentPage = 1;
-		return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase());
-	});
+		if (x.exhibitionYear !== year) return false
+		if (searchTerm === '') return true
+		const searchText = x.exhibitNumber + x.artistName + x.title
+		currentPage = 1
+		return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase())
+	})
 
 	// Setup just the page of entries (based on pageSize)
 	$: paginatedItems = filteredEntries.slice(
 		(currentPage - 1) * pageSize,
-		(currentPage - 1) * pageSize + pageSize
-	);
+		(currentPage - 1) * pageSize + pageSize,
+	)
 </script>
 
 <!-- Search Box -->

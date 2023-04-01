@@ -1,18 +1,19 @@
-<script>
-	import fallback from '$lib/Assets/error-image.png';
-	export let entry;
+<script lang="ts">
+	import fallback from '$lib/Assets/error-image.png'
+	import type { Exhibit } from '$lib/Components/index.d'
+	export let entry: Exhibit
 	$: ({ artistName, description, exhibitNumber, imageURL, inOrOut, material, price, size, title } =
-		entry);
+		entry)
 
-	const handleError = (e) => {
-		e.target.src = fallback;
-		console.log('Not Found');
-	};
+	const handleError = (e: Event) => {
+		;(e.target as HTMLImageElement).src = fallback
+		console.log('Not Found')
+	}
 </script>
 
 <!-- card -->
 <div class="relative flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
-	<div class="flex w-full items-center py-3 px-2">
+	<div class="flex w-full items-center px-2 py-3">
 		<div class="flex items-center justify-center rounded-full bg-blue-500 p-4 font-bold text-white">
 			<p>{exhibitNumber}</p>
 		</div>

@@ -24,8 +24,4 @@ export interface Exhibit {
 	size: string
 	surname: string
 	title: string
-	/**
-	 * Any properties could be useful in callback function
-	 */
-	[key: string]: unknown
 }

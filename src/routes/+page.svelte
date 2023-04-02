@@ -3,12 +3,10 @@
 
 	import { LightPaginationNav } from 'svelte-paginate'
 
-	import entries2022 from '@lib/Assets/SB-Exhibits-2022.json'
-	import entries2023 from '@lib/Assets/SB-Exhibits-2023.json'
+	import { entries } from '$lib/Utils/entries'
 
 	import EntryCard from '@lib/Components/EntryCard.svelte'
 
-	let entries = [...entries2022, ...entries2023]
 	let currentPage = 1
 	let pageSize = 5
 	let paramYear = $page.url.searchParams.get('year')
@@ -62,8 +60,8 @@
 	<div
 		class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
 	>
-		{#each paginatedItems as entry (entry.exhibitNumber)}
-			<EntryCard {entry} />
+		{#each paginatedItems as exhibit (exhibit.exhibitNumber)}
+			<EntryCard {exhibit} />
 		{/each}
 	</div>
 </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import fallback from '$lib/Assets/error-image.png'
 	import type { Exhibit } from '$lib/Components/index.d'
-	export let entry: Exhibit
+	export let exhibit: Exhibit
 	$: ({ artistName, description, exhibitNumber, imageURL, inOrOut, material, price, size, title } =
-		entry)
+		exhibit)
 
 	const handleError = (e: Event) => {
 		;(e.target as HTMLImageElement).src = fallback

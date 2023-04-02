@@ -1,23 +1,19 @@
 <script lang="ts">
-	import { page } from '$app/stores'
-
 	import { LightPaginationNav } from 'svelte-paginate'
-
-	import { entries } from '$lib/Utils/entries'
-
 	import EntryCard from '@lib/Components/EntryCard.svelte'
+
+	export let data
+
+	// get the year and all the exhibits from the layout load data
+	const { year, exhibits } = data
 
 	let currentPage = 1
 	let pageSize = 5
-	let paramYear = $page.url.searchParams.get('year')
-	let year = paramYear ? paramYear : new Date().getFullYear().toString()
 	let searchTerm = ''
 
 	// Setup the filter for searching / join a few fields to search on
-	// must be this year
 	// if no search term entered - return them all
-	$: filteredEntries = entries.filter((x) => {
-		if (x.exhibitionYear !== year) return false
+	$: filteredEntries = exhibits.filter((x) => {
 		if (searchTerm === '') return true
 		const searchText = x.exhibitNumber + x.artistName + x.title
 		currentPage = 1

@@ -1,23 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/stores'
-
 	import Image from '$lib/Components/Image.svelte'
 	import Modal from '@lib/Components/Modal.svelte'
 	import EntryCard from '$lib/Components/EntryCard.svelte'
 
 	import type { Exhibit } from '@lib/Components'
-	import { entries } from '$lib/Utils/entries'
 
-	let paramYear = $page.url.searchParams.get('year')
-	let year = paramYear ? paramYear : new Date().getFullYear().toString()
-
-	const exhibits = entries.filter((x) => {
-		if (x.exhibitionYear !== year) {
-			return false
-		} else {
-			return true
-		}
-	})
+	// get the year and all the exhibits from the layout load data
+	export let data
+	const { exhibits } = data
 
 	let baseHeight: number = 200
 	let gutter: number = 8

@@ -12,14 +12,14 @@
 </script>
 
 <!-- card -->
-<div class="relative flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
+<div class="flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
 	<div class="flex w-full items-center px-2 py-3">
 		<div class="flex items-center justify-center rounded-full bg-blue-500 p-4 font-bold text-white">
 			<p>{exhibitNumber}</p>
 		</div>
 		<span class="ml-2 pt-1 text-sm font-bold">{title} - {artistName}</span>
 	</div>
-	<img class="max-h-96 rounded-2xl px-2" src={imageURL} on:error={handleError} alt={title} />
+	<img class="max-h-[30vh] rounded-2xl px-2" src={imageURL} on:error={handleError} alt={title} />
 	<div class="w-full px-3 pb-2">
 		<p class="text-base">{description}</p>
 		<p class="mt-1 text-center text-xs">{material}</p>

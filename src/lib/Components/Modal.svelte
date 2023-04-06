@@ -5,20 +5,24 @@
 </script>
 
 <svelte:window
-	on:keydown={() => {
-		if (modalOpen) dispatch('close')
+	on:keydown={(e) => {
+		if (modalOpen) {
+			e.preventDefault()
+			dispatch('close')
+		}
 	}}
 />
 {#if modalOpen}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
-		class="modal fixed top-0 left-0 z-50 flex h-full w-full items-center justify-center p-8 lg:p-0"
+		class="modal fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center p-8 lg:p-0"
 		on:click={() => dispatch('close')}
 	>
-		<div class="modal-overlay fixed h-full w-full bg-gray-900 opacity-50" />
+		<div class="fixed h-full w-full bg-gray-900 opacity-50" />
 		<div
-			class="z-50 mx-auto w-full overflow-y-auto  rounded-lg bg-white shadow-xl lg:h-max lg:w-1/2"
-			on:keypress={() => dispatch('close')}
+			class="z-50 mx-auto w-full overflow-y-auto rounded-lg bg-white shadow-xl lg:h-max lg:w-1/2"
+			on:keypress|preventDefault={() => dispatch('close')}
+			on:wheel|preventDefault={() => void 0}
 		>
 			<div class="flex justify-end">
 				<button class="mr-2 rounded-full p-2 hover:bg-gray-300" on:click={() => dispatch('close')}>

@@ -12,7 +12,7 @@
 </script>
 
 <!-- card -->
-<div class="flex flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
+<div class="flex max-h-[80vh] flex-col items-center justify-between rounded-xl border-2 bg-blue-50">
 	<div class="flex w-full items-center px-2 py-3">
 		<div class="flex items-center justify-center rounded-full bg-blue-500 p-4 font-bold text-white">
 			<p>{exhibitNumber}</p>

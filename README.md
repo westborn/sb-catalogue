@@ -31,3 +31,10 @@ Format for the JSON file is:
 - update to sveltekit @latest (V1)
 - display for the year in the URL queryParam  
   eg. catalogue.sculpturebermagui.org.au/?year=2023
+
+### Dec-2023 (for 2024 Exhibition)
+
+- added year
+- added input file to SB-Entries-2024.json
+- update to sveltekit @latest (V1)
+  eg. catalogue.sculpturebermagui.org.au/?year=2024

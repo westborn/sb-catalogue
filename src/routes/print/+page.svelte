@@ -1,6 +1,6 @@
 <script lang="ts">
 	import fallback from '$lib/Assets/error-image.png'
-
+	import QRCode from '@bonosoft/sveltekit-qrcode'
 	export let data
 
 	// get the year and all the exhibits from the layout load data
@@ -17,7 +17,7 @@
 			<p
 				class="flex h-20 w-20 items-center justify-center gap-2 rounded-full bg-blue-500 font-bold text-white"
 			>
-				{exhibit.exhibitNumber}
+				E-{exhibit.imageId.slice(-3)}
 			</p>
 			<div class="">
 				<span class="text-2xl font-bold">{exhibit.title} - {exhibit.artistName}</span>
@@ -37,46 +37,51 @@
 				<p class="font-semibold">{exhibit.price}</p>
 			</div>
 		</div>
-		<p class="print">-----------------------------------------------</p>
-		<div class="mt-1 grid grid-cols-3 items-center">
-			<img
-				class="h-[120px]"
-				src="https://sculpturebermagui.org.au/wp-content/uploads/2022/07/sponsor-bermagui-beach-hotel.jpg"
-				alt="Bermagui Beach Hotel"
-			/>
-			<p class="font-semibold">Vote for this artwork in the People's Choice Award</p>
+		<!-- <div class="footer mt-1 grid grid-cols-3 items-center">
+			<div class="justify-self-center">
+				<img
+					class="h-[120px]"
+					src="https://sculpturebermagui.org.au/wp-content/uploads/2022/07/sponsor-bermagui-beach-hotel.jpg"
+					alt="Bermagui Beach Hotel"
+				/>
+			</div>
+			<p class="font-semibold">Vote for this artwork in the People's Choice Award</p> -->
 
-			<p>width=120, textcolor=#FFFFFF, backgroundcolor=#0094D9</p>
-			<!-- https://sculpturebermagui.org.au/peoples-choice-award/?wpf1050_3=001 -->
-		</div>
+		<!-- <p>width=120, textcolor=#FFFFFF, backgroundcolor=#0094D9</p> -->
+		<!-- <div class="justify-self-center">
+				<QRCode
+					content="https://sculpturebermagui.org.au/peoples-choice-award/?wpf1050_3=001"
+					size="120"
+				/>
+			</div> -->
+		<!-- https://sculpturebermagui.org.au/peoples-choice-award/?wpf1050_3=001 -->
+		<!-- </div> -->
 	</div>
 {/each}
 
 <style>
-	/* @media print { */
-	* {
-		-webkit-print-color-adjust: exact;
-		color-adjust: exact;
-	}
+	@media print {
+		* {
+			-webkit-print-color-adjust: exact;
+			print-color-adjust: exact;
+		}
 
-	@page {
-		size: a4 portrait;
-		margin: 1cm;
+		@page {
+			size: a4 portrait;
+			margin: 1cm;
+		}
+		img {
+			display: block;
+			max-width: 100%;
+		}
+		.card {
+			color: #000;
+			background-color: #fff;
+			break-before: page;
+		}
+		.footer {
+			position: fixed;
+			bottom: 0;
+		}
 	}
-
-	img {
-		display: block;
-		max-width: 100%;
-	}
-
-	.card {
-		color: #000;
-		background-color: #fff;
-		break-before: page;
-	}
-
-	.print {
-		display: block;
-	}
-	/* } */
 </style>

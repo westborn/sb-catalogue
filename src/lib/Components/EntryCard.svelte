@@ -9,6 +9,19 @@
 		;(e.target as HTMLImageElement).src = fallback
 		console.log('Not Found')
 	}
+
+	function determinePlacement(exhibitNumberString: string) {
+		const exhibitNumber = parseInt(exhibitNumberString)
+		if (exhibitNumber >= 100 && exhibitNumber < 400) {
+			return 'Headland'
+		} else if (exhibitNumber >= 400 && exhibitNumber < 500) {
+			return 'Hotel'
+		} else if (exhibitNumber >= 500 && exhibitNumber < 800) {
+			return 'Surf Gallery'
+		} else if (exhibitNumber >= 800 && exhibitNumber < 900) {
+			return 'Street Gallery'
+		}
+	}
 </script>
 
 <!-- card -->
@@ -25,7 +38,7 @@
 		<p class="mt-1 text-center text-xs">{material}</p>
 		<div class="flex flex-row justify-between">
 			<p class="text-xs">{size}</p>
-			<p class="text-xs">{inOrOut}</p>
+			<p class="text-xs">{determinePlacement(exhibitNumber)}</p>
 		</div>
 		<p class="w-full text-center text-base font-medium text-gray-700">{price}</p>
 	</div>

@@ -13,6 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@bonosoft/sveltekit-qrcode": "^0.0.3",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.15.0",
 		"@typescript-eslint/eslint-plugin": "^5.57.0",
@@ -21,6 +22,8 @@
 		"eslint": "^8.37.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"install": "^0.13.0",
+		"npm": "^10.3.0",
 		"postcss": "^8.4.21",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.7",
@@ -28,8 +31,8 @@
 		"prettier-plugin-tailwindcss": "^0.2.6",
 		"svelte": "^3.58.0",
 		"svelte-check": "^3.1.4",
-		"svelte-preprocess": "^5.0.3",
 		"svelte-paginate": "^0.1.0",
+		"svelte-preprocess": "^5.0.3",
 		"tailwindcss": "^3.3.1",
 		"tslib": "^2.5.0",
 		"typescript": "^5.0.3",

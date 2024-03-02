@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { LightPaginationNav } from 'svelte-paginate'
 	import EntryCard from '@lib/Components/EntryCard.svelte'
+	import { determinePlacement } from '../lib/Utils/Utilities.js'
 
 	export let data
 
@@ -15,7 +16,8 @@
 	// if no search term entered - return them all
 	$: filteredEntries = exhibits.filter((x) => {
 		if (searchTerm === '') return true
-		const searchText = x.exhibitNumber + x.artistName + x.title
+		const location = determinePlacement(x.exhibitNumber, x.exhibitionYear, x.inOrOut)
+		const searchText = x.exhibitNumber + x.artistName + x.title + location
 		currentPage = 1
 		return searchText.toLocaleLowerCase().includes(searchTerm.toLowerCase())
 	})
@@ -35,7 +37,7 @@
 			bind:value={searchTerm}
 			type="search"
 			class="w-full rounded border border-solid border-gray-300 bg-white px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-			placeholder="Search number, title or artist"
+			placeholder="Number, title, artist or location"
 			aria-label="Search"
 		/>
 	</div>
